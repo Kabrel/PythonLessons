@@ -14,7 +14,7 @@
 while True:
     value = input("Введите цифру, обозначающую день недели: ")
     try:
-        if int(value) == 6 or int(value) == 7:
+        if int(value) in [6, 7]:
             print('Да')
         else:
             print('Нет')
