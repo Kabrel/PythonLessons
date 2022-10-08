@@ -28,7 +28,7 @@ while True:
         else:
             print('Лежит на оси координат')
             break
-        print(f"x = {x} и y = {y}, принадлежат {quarter} четверти")
+        print(f"Координаты x = {x} и y = {y}, принадлежат {quarter} четверти")
         break
     except ValueError:
         print('Введите правильные данные.')
