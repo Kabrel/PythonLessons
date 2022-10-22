@@ -11,15 +11,38 @@ file_count = 2
 
 values_dict = {}
 
+
+def check_all_condition(v_data):
+    print(v_data)\
+    if len(v_data) > 1:
+        if not v_data[1][1:]:
+            return '1', v_data[0]
+        else:
+            return v_data[1][1:], v_data[0]
+    else:
+        return '0', v_data[0]
+
+
+
+def add_data_to_dict(val: list):
+    print(check_all_condition(val))
+
+
+
 for i in range(1, file_count+1):
-    if not file_exists(f"file_{i}"):
+    if not file_exists(f"file_{i}"): #  создаем файл, если его нет и заполняем его данными
         with open(f'file_{i}', 'w') as f:
             data = Task_3.set_degree_values(10)
             f.write(data)
     with open(f'file_{i}', 'r') as f:
         for v in f:
-            values_dict[f'val_{i}'] = v
+            for elements in v.split(' + '): #  разделяем многочлены на отдельные элементы.
+                values = elements.split('*')
+                add_data_to_dict(values)
+                        #values_dict['1']
+
+            #if values_dict.get()
 
 print(values_dict)
 
-value_1 = values_dict['val_1'].split(' + ') # генерировать словарь в зависимости от степени к
+
