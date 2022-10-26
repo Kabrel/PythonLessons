@@ -15,19 +15,30 @@ b) Подумайте как наделить бота ""интеллектом"
 '''
 
 from random import randint as rand
-import Task_2_classes as game
+from pick import pick
+import Task_2_classes as game_c
+
+pick_set = {'start_game': {'title': 'Выберите режим игры (нажмите пробел '
+                                    'для выбора)',
+                        'options': ['Против игрока', 'Против компьютера'],
+                        'multiselect': False},
+            'select_side': {'title': 'Выберите орел или решка'
+                                     '(нажмите пробел для выбора)',
+                            'options': ['Орел', 'Решка'],
+                            'multiselect': False},
+            }
 
 
 def create_player():
     p_name = input('Как вас зовут пират?: ')
     if p_name:
-        return game.Player(p_name)
+        return game_c.Player(p_name)
     else:
-        return game.Player('Немой')
+        return game_c.Player('Немой')
 
 
 def create_bot():
-    return game.Player('Сильвер', human=False)
+    return game_c.Player('Сильвер', human=False)
 
 
 def toss_coin():
@@ -38,21 +49,33 @@ def make_human_turn(player):
     while True:
         try:
             num = int(input('Сколько монет вы кладете в руку?: '))
-            game.Game.take_coins(num)
+            game_c.Game.take_coins(num)
             player.take_coin(num)
             break # продумать отрицательное количество монет
         except ValueError:
             pass
 
+
 def make_bot_turn():
     pass
 
+
 def start_game():
-    players_count = int(print('Введите кол-во игроков (1 или 2): '))
+    print('Game started')
+    players_count = pick(pick_set['start_game']['options'],
+                         pick_set['start_game']['title'],
+                         multiselect=pick_set['start_game']['multiselect']
+                        )
     Player_1 = create_player()
-    if players_count >= 2:
+    if players_count == 'Против игрока':
         Player_2 = create_player()
     else:
         Player_2 = create_bot()
-    p_choose = input()
+    p_choose = pick(pick_set['select_side']['options'],
+                    pick_set['select_side']['title'],
+                    multiselect=pick_set['select_side']['multiselect']
+                    )
     toss_coin()
+
+
+start_game()
