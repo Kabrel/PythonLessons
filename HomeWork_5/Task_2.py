@@ -15,10 +15,10 @@ b) Подумайте как наделить бота ""интеллектом"
 '''
 
 from random import randint as rand
-from pick import pick
+import curses
 import Task_2_classes as game_c
 
-pick_set = {'start_game': {'title': 'Выберите режим игры (нажмите пробел '
+""" pick_set = {'start_game': {'title': 'Выберите режим игры (нажмите пробел '
                                     'для выбора)',
                         'options': ['Против игрока', 'Против компьютера'],
                         'multiselect': False},
@@ -27,9 +27,9 @@ pick_set = {'start_game': {'title': 'Выберите режим игры (на�
                             'options': ['Орел', 'Решка'],
                             'multiselect': False},
             }
+ """
 
-
-def create_player():
+""" def create_player():
     p_name = input('Как вас зовут пират?: ')
     if p_name:
         return game_c.Player(p_name)
@@ -58,24 +58,21 @@ def make_human_turn(player):
 
 def make_bot_turn():
     pass
-
+ """
 
 def start_game():
     print('Game started')
-    players_count = pick(pick_set['start_game']['options'],
-                         pick_set['start_game']['title'],
-                         multiselect=pick_set['start_game']['multiselect']
-                        )
-    Player_1 = create_player()
-    if players_count == 'Против игрока':
-        Player_2 = create_player()
-    else:
-        Player_2 = create_bot()
-    p_choose = pick(pick_set['select_side']['options'],
-                    pick_set['select_side']['title'],
-                    multiselect=pick_set['select_side']['multiselect']
-                    )
-    toss_coin()
+    new_game = game_c.Game()
+    # if players_count == 'Против игрока':
+    #     Player_2 = create_player()
+    # else:
+    #     Player_2 = create_bot()
+    # p_choose = pick(pick_set['select_side']['options'],
+    #                 pick_set['select_side']['title'],
+    #                 multiselect=pick_set['select_side']['multiselect']
+    #                 )
+    # toss_coin()
+
 
 
 start_game()
