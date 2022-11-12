@@ -17,7 +17,7 @@ for i, v in enumerate(fib):
         fib.append(fib[i]+fib[i+1])
     else:
         break
-neg_fib = [-i for i in fib if i != 0]
+neg_fib = [-i ** -i for i in fib if i != 0]
 result = fib.extend(neg_fib)
 print(sorted(fib))
 # советую проверять на числе 300, получается красивый рисунок
